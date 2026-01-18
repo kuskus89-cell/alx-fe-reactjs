@@ -8,7 +8,7 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Pages/Home";
 import About from "./components/Pages/About";
 import Services from "./components/Pages/Services";
-import Contact from "./components/Pages/Contact";
+import Contact from "./components/Contact";
 
 
 function App() {
