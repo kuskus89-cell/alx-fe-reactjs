@@ -8,6 +8,7 @@ function Navbar() {
         gap: "20px",
         padding: "15px",
         backgroundColor: "#222",
+        justifyContent: "center",
       }}
     >
       <Link style={{ color: "white", textDecoration: "none" }} to="/">
