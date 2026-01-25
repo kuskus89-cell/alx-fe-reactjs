@@ -1,0 +1,20 @@
+import { useRecipeStore } from './recipeStore';
+
+const FavoritesList = () => {
+    //This will display the users recommended recipes to try
+  const Recommendations = useRecipeStore(state => state.favorites.map(id =>
+    state.recipes.find(recipe => recipe.id === id)
+  ));
+
+  return (
+    <div>
+      <h2>Recommendations</h2>
+      {favorites.map(recipe => (
+        <div key={recipe.id}>
+          <h3>{recipe.title}</h3>
+          <p>{recipe.description}</p>
+        </div>
+      ))}
+    </div>
+  );
+};
