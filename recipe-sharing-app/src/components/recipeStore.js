@@ -1,35 +1,46 @@
-import create from 'zustand';
-import React from 'react';
-import { useRecipeStore } from './recipeStore';
+import { create } from "zustand";
 
-const useRecipeStore = create(set => ({
-  recipes: [{ id: 1, title: "Pilau", ingredients: ["rice", "meat"], time: 45 },
-    { id: 2, title: "Chapati", ingredients: ["flour"], time: 20 },],
+const useRecipeStore = create((set) => ({
+  recipes: [
+    { id: 1, title: "Pilau", ingredients: ["rice", "meat"], time: 45 },
+    { id: 2, title: "Chapati", ingredients: ["flour"], time: 20 },
+  ],
 
-favorites: [],
-  addFavorite: (recipeId) => set(state => ({ favorites: [...state.favorites, recipeId] })),
-  removeFavorite: (recipeId) => set(state => ({
-    favorites: state.favorites.filter(id => id !== recipeId)
-  })),
+  // FAVORITES
+  favorites: [],
+  addFavorite: (recipeId) =>
+    set((state) => ({
+      favorites: [...state.favorites, recipeId],
+    })),
+
+  removeFavorite: (recipeId) =>
+    set((state) => ({
+      favorites: state.favorites.filter((id) => id !== recipeId),
+    })),
+
+  // RECOMMENDATIONS
   recommendations: [],
-  generateRecommendations: () => set(state => { const recommended = state.recipes.filter(recipe =>
-      state.favorites.includes(recipe.id) && Math.random() > 0.5
-    );
-    return { recommendations: recommended };
-  }),
+  generateRecommendations: () =>
+    set((state) => ({
+      recommendations: state.recipes.filter(
+        (recipe) =>
+          state.favorites.includes(recipe.id) && Math.random() > 0.5
+      ),
+    })),
+
+  // SEARCH & FILTERING
   searchTerm: "",
-  filteredRecipes: []
+  filteredRecipes: [],
 
   setSearchTerm: (term) =>
     set((state) => ({
       searchTerm: term,
       filteredRecipes: state.recipes.filter((recipe) =>
         recipe.title.toLowerCase().includes(term.toLowerCase())
-
       ),
     })),
-  }));
 
+  // CRUD ACTIONS
   addRecipe: (recipe) =>
     set((state) => {
       const updatedRecipes = [...state.recipes, recipe];
@@ -48,7 +59,7 @@ favorites: [],
       };
     }),
 
-     updateRecipe: (updatedRecipe) =>
+  updateRecipe: (updatedRecipe) =>
     set((state) => {
       const updatedRecipes = state.recipes.map((r) =>
         r.id === updatedRecipe.id ? updatedRecipe : r
@@ -58,6 +69,6 @@ favorites: [],
         filteredRecipes: updatedRecipes,
       };
     }),
+}));
 
-  export default useRecipeStore;
-  
+export default useRecipeStore;
