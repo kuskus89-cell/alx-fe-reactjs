@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-const useRecipeStore = create((set) => ({
+const useRecipeStore = create((setRecipes) => ({
   recipes: [
     { id: 1, title: "Pilau", ingredients: ["rice", "meat"], time: 45 },
     { id: 2, title: "Chapati", ingredients: ["flour"], time: 20 },
