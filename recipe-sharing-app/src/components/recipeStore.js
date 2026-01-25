@@ -3,23 +3,20 @@ import React from 'react';
 import { useRecipeStore } from './recipeStore';
 
 const useRecipeStore = create(set => ({
-  recipes: [],
-  searchTerm: '',
-  setSearchTerm: (term) => set({ searchTerm: term }),
-  filteredRecipes: [],
-  filterRecipes: () => set(state => ({filteredRecipes: state.recipes.filter(recipe =>
-recipe.title.toLowerCase().includes(state.searchTerm.toLowerCase())
-  ))
-  })),
+  recipes: [{ id: 1, title: "Pilau", ingredients: ["rice", "meat"], time: 45 },
+    { id: 2, title: "Chapati", ingredients: ["flour"], time: 20 },],
 
-  const SearchBar = () => {
-  const setSearchTerm = useRecipeStore(state => state.setSearchTerm);
+  searchTerm: "",
+  filteredRecipes: []
 
-  return (
-    <input
-      type="text"
-      placeholder="Search recipes..."
-      onChange={(e) => setSearchTerm(e.target.value)}
-    />
-  );
-};
+  setSearchTerm: (term) =>
+    set((state) => ({
+      searchTerm: term,
+      filteredRecipes: state.recipes.filter((recipe) =>
+        recipe.title.toLowerCase().includes(term.toLowerCase())
+      ),
+    })),
+  }));
+
+  export default useRecipeStore;
+  

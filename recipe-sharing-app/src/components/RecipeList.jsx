@@ -1,8 +1,14 @@
 // RecipeList component
   import { useRecipeStore } from './recipeStore';
 
-  const RecipeList = () => {
-    const recipes = useRecipeStore(state => state.recipes);
+  function RecipeList() {
+  const { recipes, filteredRecipes } = useRecipeStore((state) => ({
+    recipes: state.recipes,
+    filteredRecipes: state.filteredRecipes,
+  }));
+
+  const listToShow =
+    filteredRecipes.length > 0 ? filteredRecipes : recipes;
 
     return (
       <div>
@@ -14,6 +20,6 @@
         ))}
       </div>
     );
-  };
+  }
 
   export default RecipeList;

@@ -7,6 +7,8 @@ import AddRecipeForm from './components/AddRecipeForm'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RecipeDetails from "./components/RecipeDetails";
 import EditRecipeForm from "./components/EditRecipeForm";
+import SearchBar from "./components/SearchBar";
+import RecipeList from "./components/RecipeList";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -15,6 +17,11 @@ function App() {
   
   
     <div>
+          <div style={{ maxWidth: "600px", margin: "0 auto", padding: "1rem" }}>
+      <h1>Recipes</h1>
+      <SearchBar />
+      <RecipeList />
+    </div>  
         <RecipeList />
         <AddRecipeForm />
         <div>
