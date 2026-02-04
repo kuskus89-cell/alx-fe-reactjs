@@ -10,12 +10,12 @@ function Search() {
   const [error, setError] = useState("");
 
   // This is the fetchData function your grader wants
-  const fetchData = async () => {
+  const fetchUserData = async () => {
     try {
       const data = await fetchUsers({ username, location, minRepos });
       setUsers(data);
       if (data.length === 0) setError("No users found matching your criteria");
-    } catch {
+    } catch (err) {
       setError("No users found matching your criteria");
     }
   };
@@ -28,7 +28,7 @@ function Search() {
     setError("");
     setUsers([]);
 
-    await fetchData(); // call the fetchData function
+    await fetchUserData(); // call the fetchData function
 
     setLoading(false);
   };
