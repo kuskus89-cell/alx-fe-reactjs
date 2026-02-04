@@ -10,20 +10,23 @@ function Search() {
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-    setUsers([]);
+  e.preventDefault();
+  if (!username.trim()) return;
 
-    try {
-      const data = await fetchUsers({ username, location, minRepos });
-      setUsers(data);
-    } catch {
-      setError("No users found matching your criteria.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  setLoading(true);
+  setError('');
+  setUsers([]);
+
+  try {
+    const data = await fetchUsers({ username, location, minRepos });
+    setUsers(data);
+  } catch {
+    setError("No users found matching your criteria");
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   return (
     <div className="max-w-xl mx-auto p-4">
