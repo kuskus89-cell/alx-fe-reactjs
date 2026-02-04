@@ -20,8 +20,8 @@ function App() {
 
         try {
           const data = await fetchUserData(username);
-      setUser(data);
-    } catch (err) {
+          setUser(data);
+    } catch  {
       setError("Looks like we cant find the user");
     } finally {
       setLoading(false);
@@ -35,7 +35,8 @@ function App() {
       <Search onSearch={handleSearch} />
 
       {loading && <p>Loading</p>}
-      {error && <p>{error}Looks like we cant find the user</p>}
+      
+      {error && <p>{error}</p>}
 
       {user && (
         <div>
