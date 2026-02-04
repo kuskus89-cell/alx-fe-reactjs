@@ -34,8 +34,8 @@ function App() {
 
       <Search onSearch={handleSearch} />
 
-      {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
+      {loading && <p>Loading</p>}
+      {error && <p>{error}Looks like we cant find the user</p>}
 
       {user && (
         <div>
