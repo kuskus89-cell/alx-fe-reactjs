@@ -5,6 +5,7 @@ import './App.css'
 
 import Search from './components/search.jsx'
 import { fetchUserData } from './services/githubService.js'
+import './index.css';
 
 
 function App() {
@@ -35,7 +36,7 @@ function App() {
       <Search onSearch={handleSearch} />
 
       {loading && <p>Loading</p>}
-      
+
       {error && <p>{error}</p>}
 
       {user && (
