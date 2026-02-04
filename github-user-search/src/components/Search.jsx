@@ -16,13 +16,13 @@ const handleSubmit = async (e) => {
     setUser(null);
 
     try {
-    const data = await fetchUserData(username);
-    setUser(data);
-  } catch {
-    setError("Looks like we can't find the user");
-  } finally {
-    setLoading(false);  
-  }
+      const data = await onSearch(username);
+      setUser(data);
+    } catch  {
+      setError("Looks like we cant find the user");
+    } finally {
+      setLoading(false);
+    }
 };          
 
 return (
