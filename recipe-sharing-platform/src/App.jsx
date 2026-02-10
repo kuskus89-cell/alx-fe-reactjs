@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import User from './components/user'
-import HomePage from './components/homepage'
+import HomePage from './components/HomePage'
 
 function App() {
   const [count, setCount] = useState(0)
