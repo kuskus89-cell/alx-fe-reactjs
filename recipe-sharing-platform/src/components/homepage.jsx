@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-export default function HomePage() {
+function HomePage() {
   const [recipes, setRecipes] = useState([])
 
   useEffect(() => {
@@ -42,3 +42,5 @@ export default function HomePage() {
     </div>
   )
 }
+
+export default HomePage;
