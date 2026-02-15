@@ -4,15 +4,12 @@ function AddRecipeForm() {
   const [title, setTitle] = useState("");
   const [ingredients, setIngredients] = useState("");
   const [steps, setSteps] = useState("");
-
   const [errors, setErrors] = useState({});
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  // ✅ Validation function
+  const validate = () => {
     let newErrors = {};
 
-    // Validation
     if (!title.trim()) {
       newErrors.title = "Title is required";
     }
@@ -34,10 +31,16 @@ function AddRecipeForm() {
       newErrors.steps = "Preparation steps are required";
     }
 
-    setErrors(newErrors);
+    return newErrors;
+  };
 
-    // If no errors → submit
-    if (Object.keys(newErrors).length === 0) {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const validationErrors = validate();
+    setErrors(validationErrors);
+
+    if (Object.keys(validationErrors).length === 0) {
       const newRecipe = {
         title,
         ingredients: ingredients.split(",").map((i) => i.trim()),
@@ -46,10 +49,10 @@ function AddRecipeForm() {
 
       console.log("Recipe Submitted:", newRecipe);
 
-      // Clear form
       setTitle("");
       setIngredients("");
       setSteps("");
+      setErrors({});
 
       alert("Recipe added successfully! 🎉");
     }
@@ -72,9 +75,18 @@ function AddRecipeForm() {
             <input
               type="text"
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => {
+                setTitle(e.target.value);
+                if (errors.title) {
+                  setErrors({ ...errors, title: "" });
+                }
+              }}
               className={`w-full p-3 rounded-lg border ${
-                errors.title ? "border-red-500" : "border-gray-300"
+                errors.title
+                  ? "border-red-500"
+                  : title
+                  ? "border-green-500"
+                  : "border-gray-300"
               } focus:outline-none focus:ring-2 focus:ring-green-400`}
               placeholder="Enter recipe title"
             />
@@ -90,10 +102,19 @@ function AddRecipeForm() {
             </label>
             <textarea
               value={ingredients}
-              onChange={(e) => setIngredients(e.target.value)}
+              onChange={(e) => {
+                setIngredients(e.target.value);
+                if (errors.ingredients) {
+                  setErrors({ ...errors, ingredients: "" });
+                }
+              }}
               rows="3"
               className={`w-full p-3 rounded-lg border ${
-                errors.ingredients ? "border-red-500" : "border-gray-300"
+                errors.ingredients
+                  ? "border-red-500"
+                  : ingredients
+                  ? "border-green-500"
+                  : "border-gray-300"
               } focus:outline-none focus:ring-2 focus:ring-green-400`}
               placeholder="e.g. Flour, Sugar, Eggs"
             />
@@ -111,10 +132,19 @@ function AddRecipeForm() {
             </label>
             <textarea
               value={steps}
-              onChange={(e) => setSteps(e.target.value)}
+              onChange={(e) => {
+                setSteps(e.target.value);
+                if (errors.steps) {
+                  setErrors({ ...errors, steps: "" });
+                }
+              }}
               rows="4"
               className={`w-full p-3 rounded-lg border ${
-                errors.steps ? "border-red-500" : "border-gray-300"
+                errors.steps
+                  ? "border-red-500"
+                  : steps
+                  ? "border-green-500"
+                  : "border-gray-300"
               } focus:outline-none focus:ring-2 focus:ring-green-400`}
               placeholder="Describe how to prepare the recipe"
             />
