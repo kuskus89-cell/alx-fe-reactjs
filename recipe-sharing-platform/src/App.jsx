@@ -5,6 +5,10 @@ import './App.css'
 import User from './components/user'
 import HomePage from './components/HomePage'
 
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HomePage from './components/HomePage';
+import RecipeDetail from './components/RecipeDetail';
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -13,6 +17,12 @@ function App() {
       <div>
         <User />
         <HomePage />
+        <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/recipe/:id" element={<RecipeDetail />} />
+      </Routes>
+    </Router>
         <a href="https://vite.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
