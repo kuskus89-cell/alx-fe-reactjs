@@ -19,7 +19,7 @@ const RecipeDetail = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-3xl font-bold mb-4">{recipe.name}</h1>
+      <h1 className="text-3xl font-bold mb-4 shadow-lg">{recipe.name}</h1>
       <img
         src={recipe.image}
         alt={recipe.name}
