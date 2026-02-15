@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 
+import { Link } from 'react-router-dom'
+
 function HomePage() {
   const [recipes, setRecipes] = useState([])
 
@@ -18,10 +20,12 @@ function HomePage() {
 
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {recipes.map((recipe) => (
-          <div
-            key={recipe.id}
-            className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition"
-          >
+          <div>
+          <Link
+    to={`/recipe/${recipe.id}`}
+    key={recipe.id}
+    className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition block"
+  ></Link>
             <img
               src={recipe.image}
               alt={recipe.title}
