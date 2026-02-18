@@ -9,7 +9,7 @@ function RegistrationForm() {
     e.preventDefault();
 
     if (!username || !email || !password) {
-      alert("All fields are required");
+      setErrors("All fields are required");
       return;
     }
 
