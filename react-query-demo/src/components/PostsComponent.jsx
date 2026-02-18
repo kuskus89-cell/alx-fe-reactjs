@@ -23,12 +23,15 @@ const PostsComponent = () => {
     keepPreviousData: true,
   });
 
-  if (isLoading) return <p>Loading posts...</p>;
-  if (isError) return <p>Error: {error.message}</p>;
+  const { refetch } = useQuery({
+    queryKey: ["posts"],
+    queryFn: fetchPosts,
+  });
 
   return (
     <div>
       <h2>Posts</h2>
+      <button onClick={() => refetch()}>Refresh Posts</button>
       {data.map((post) => (
         <div key={post.id}>
           <h4>{post.title}</h4>
