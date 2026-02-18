@@ -1,55 +1,54 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+import { useState } from "react";
 
-const validationSchema = Yup.object({
-  username: Yup.string()
-    .required('Username is required'),
+function RegistrationForm() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
-  email: Yup.string()
-    .email('Invalid email format')
-    .required('Email is required'),
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  password: Yup.string()
-    .min(6, 'Password must be at least 6 characters')
-    .required('Password is required')
-});
+    if (!username || !email || !password) {
+      alert("All fields are required");
+      return;
+    }
 
-const FormikForm = () => (
-  <Formik
-    initialValues={{
-      username: '',
-      email: '',
-      password: ''
-    }}
-    validationSchema={validationSchema}
-    onSubmit={(values, { resetForm }) => {
-      console.log(values);
-      alert('Registration Successful!');
-      resetForm();
-    }}
-  >
-    <Form>
+    console.log({ username, email, password });
+    alert("Registration successful!");
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
       <div>
         <label>Username</label>
-        <Field type="text" name="username" />
-        <ErrorMessage name="username" component="div" className="error" />
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
       </div>
 
       <div>
         <label>Email</label>
-        <Field type="email" name="email" />
-        <ErrorMessage name="email" component="div" className="error" />
+        <input
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
       </div>
 
       <div>
         <label>Password</label>
-        <Field type="password" name="password" />
-        <ErrorMessage name="password" component="div" className="error" />
+        <input
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
       </div>
 
       <button type="submit">Register</button>
-    </Form>
-  </Formik>
-);
+    </form>
+  );
+}
 
-export default FormikForm;
+export default RegistrationForm;
