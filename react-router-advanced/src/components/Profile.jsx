@@ -6,8 +6,8 @@ function Profile() {
       <h2>Profile Page</h2>
 
       <nav>
-        <Link to="details">Profile Details</Link> |{" "}
-        <Link to="settings">Profile Settings</Link>
+        <Link to="details">ProfileDetails</Link> |{" "}
+        <Link to="settings">ProfileSettings</Link>
       </nav>
 
       <Outlet />
