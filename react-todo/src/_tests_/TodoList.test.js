@@ -5,9 +5,9 @@ import TodoList from "./TodoList";
 test("renders initial demo todos", () => {
   render(<TodoList />);
 
-  expect(screen.getByText("Learn React")).toBeInTheDocument();
-  expect(screen.getByText("Build a Todo App")).toBeInTheDocument();
-  expect(screen.getByText("Understand State")).toBeInTheDocument();
+  expect(screen.getByText("Eat breakfast")).toBeInTheDocument();
+  expect(screen.getByText("Go to the gym")).toBeInTheDocument();
+  expect(screen.getByText("Finish React project")).toBeInTheDocument();
 });
 
 test("adds a new todo", () => {
